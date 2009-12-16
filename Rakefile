@@ -5,7 +5,7 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "has_bitfield"
-    gem.summary = %Q{A rails plugin for easy bitfield support.}
+    gem.summary = %Q{A rails gem for easy bitfield support.}
     gem.description = %Q{Enable bitfield properties in ActiveRecord models.}
     gem.email = "hugo_duncan@yahoo.com"
     gem.homepage = "http://github.com/hugoduncan/has_bitfield"

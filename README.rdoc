@@ -6,7 +6,7 @@ Has support form multiple bitfield columns.  See http://github.com/aka47/has_fla
 
 == Install
 
-  gem install hugoduncan-has_bitfield --source http://gemcutter.org
+  gem install has_bitfield
 
 == Usage
   class MyClass << ActiveRecord::Base
