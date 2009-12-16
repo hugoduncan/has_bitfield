@@ -1,9 +1,52 @@
 = has_bitfield
 
-Description goes here.
+A rails gem for easy bitfield support.
+
+Has support form multiple bitfield columns.  See http://github.com/aka47/has_flags for a gem with a different feature set.
+
+== Install
+
+  gem install hugoduncan-has_bitfield --source http://gemcutter.org
+
+== Usage
+  class MyClass << ActiveRecord::Base
+    has_bitfield :column_name,
+         1 => :flag1,
+         2 => :flag2,
+         3 => :flag3
+  end
+
+== Attribute Accessors
+   readers: name, name?
+   writer: name=(v)
+   where 'name' is the name of the bit field.  the (v) parameter can be true/false, "true"/"false", 0/1, 'yes'/'no',
+   or :yes/:no.  specifically, the following (v) inputs evaluate to true:
+     [ true, 'true', 'yes', :yes, 'ok', :ok, 1, '1' ]
+   all others, including nil evaluate false.
+   groups_name = [Array of flags] , not the plural
+   groups_name << name
+   groups_name
+   group_ids
+   group_ids = [Array of flag-ids]
+
+
+The database table must include the column 'column_name' as an integer.
+
+Defaults are set in per column 'after_initialized' callbacks.  If your model needs to use this
+callback, define it in the class and invoke: initialize_column_name.
+
+  class MyClass << ActiveRecord::Base
+    has_bitfield :my_flags,
+         1 => {:flag1  => { :default => false }},
+         2 => :flag2,
+         3 => :flag3
+
+    after_initialize :initialize_my_flags
+  end
+
 
 == Note on Patches/Pull Requests
- 
+
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a
